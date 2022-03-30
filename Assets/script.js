@@ -30,19 +30,20 @@ var fetchApi = async (url) => {
 var APIKEY = '6aa15f30207248b9b2b135920223003';
 var searchedCity = 'Toronto';
 var weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${searchedCity}&aqi=no`;
+// The above url returns the CURRENT weather, for the five-day forecast, there is a different URL
 
 // -------- -------- -------- -------- RapidAPI (Amazon) - required options and URL
 const amazonOptions = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Host': 'amazon24.p.rapidapi.com',
+    'X-RapidAPI-Host': 'amazon23.p.rapidapi.com',
     'X-RapidAPI-Key': 'ffae5646afmshec63d61fbd07b2fp17ee73jsn3371d91d22c0',
   },
 };
 
 // There is a MASSIVE request delay? Might need to consider the premium versions
 var amazonUrl =
-  'https://amazon24.p.rapidapi.com/api/product?keyword=ipad&country=US';
+  'https://amazon23.p.rapidapi.com/product-search?query=xbox&country=US';
 
 // -------- -------- -------- -------- Executing the fetch
 // Fetch function is reusable - Required: Include the API url as the parameter
@@ -50,4 +51,3 @@ fetchApi(amazonUrl);
 
 // !!!!!!! Future updates
 // - Based on users SIZE preference, return clothing accordingly
-// This is possible with the Amazon API, you can filter clothing sizes
