@@ -19,6 +19,9 @@ var fetchApi = async (url) => {
     } else {
       // Otherwise the data returned successfully
       console.log(data);
+      if (url == amazonUrl) {
+        displayProduct(data);
+      }
     }
     // If there is no network connection, execute the catch block function
   } catch (error) {
@@ -41,13 +44,36 @@ const amazonOptions = {
   },
 };
 
-// There is a MASSIVE request delay? Might need to consider the premium versions
-var amazonUrl =
-  'https://amazon23.p.rapidapi.com/product-search?query=xbox&country=US';
+// For now i hardcoded 'ipad' but this data will be returned from user input
+var searchTerm = 'ipad';
+var amazonUrl = `https://amazon23.p.rapidapi.com/product-search?query=${searchTerm}&country=US`;
 
 // -------- -------- -------- -------- Executing the fetch
 // Fetch function is reusable - Required: Include the API url as the parameter
 fetchApi(amazonUrl);
+
+// -------- -------- -------- -------- Displaying the product
+// Only showing 1 products for testing purposes, will include a loop to iterate over all products
+// This function updates the HTML elements with the appropriate data from the fetch function
+function displayProduct(data) {
+  var productTitleEl = document.getElementById('product-title');
+  var productTitle = data.result[0].title;
+  productTitleEl.textContent = productTitle;
+
+  var productImgEl = document.getElementById('product-img');
+  var productImg = data.result[0].thumbnail;
+  productImgEl.src = productImg;
+  productImgEl.alt = searchTerm;
+
+  var productPriceEl = document.getElementById('product-price');
+  var productImg = data.result[0].price.current_price;
+  productPriceEl.textContent = `$${productImg}`;
+
+  var productLinkEl = document.getElementById('product-link');
+  var productLink = data.result[0].url;
+  productLinkEl.href = productLink;
+  productLinkEl.innerText = 'Link to product page';
+}
 
 // !!!!!!! Future updates
 // - Based on users SIZE preference, return clothing accordingly
