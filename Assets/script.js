@@ -1,21 +1,17 @@
-var baseUrl = 'http://api.weatherapi.com/v1/';
-var APIKEY = '6aa15f30207248b9b2b135920223003';
-var searchedCity = 'Toronto';
-
-var extractWeather = async () => {
+// Universal fetch function
+var fetchApi = async (url) => {
   // Execute a try and catch block to catch if there is no network
   try {
-    var url = `${baseUrl}current.json?key=${APIKEY}&q=${searchedCity}&aqi=no`;
     var res = await fetch(url);
-    var weatherData = await res.json();
+    var data = await res.json();
 
     // If the response is 400...
     if (res.status >= 400) {
-      // That means the searched term does not return data
-      alert('Enter a valid city');
+      // That means no proper data was returned
+      alert('No data returned');
     } else {
       // Otherwise the data returned successfully
-      console.log(weatherData);
+      console.log(data);
     }
     // If there is no network connection, execute the catch block function
   } catch (error) {
@@ -23,4 +19,11 @@ var extractWeather = async () => {
   }
 };
 
-extractWeather();
+// Weatherapi - required parameters and URL
+var APIKEY = '6aa15f30207248b9b2b135920223003';
+var searchedCity = 'Toronto';
+var weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${searchedCity}&aqi=no`;
+
+// Fetch function is reusable
+// Simply include the API url with the required parameters
+fetchApi(weatherUrl);
