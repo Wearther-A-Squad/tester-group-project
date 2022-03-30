@@ -34,6 +34,7 @@ var APIKEY = '6aa15f30207248b9b2b135920223003';
 var searchedCity = 'Toronto';
 var weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${searchedCity}&aqi=no`;
 // The above url returns the CURRENT weather, for the five-day forecast, there is a different URL
+// https://www.weatherapi.com/docs/#apis-forecast < Link to forecast endpoint url
 
 // -------- -------- -------- -------- RapidAPI (Amazon) - required options and URL
 const amazonOptions = {
@@ -50,10 +51,12 @@ var amazonUrl = `https://amazon23.p.rapidapi.com/product-search?query=${searchTe
 
 // -------- -------- -------- -------- Executing the fetch
 // Fetch function is reusable - Required: Include the API url as the parameter
-fetchApi(amazonUrl);
+fetchApi(weatherUrl);
+// fetchApi(amazonUrl); < IMPORTANT note from Carlos - i included my payment info so any more additional calls
+// to the amazon API will charge my account
 
 // -------- -------- -------- -------- Displaying the product
-// Only showing 1 products for testing purposes, will include a loop to iterate over all products
+// Only showing 1 products for testing purposes, will include a loop to iterate over all products for final application
 // This function updates the HTML elements with the appropriate data from the fetch function
 function displayProduct(data) {
   var productTitleEl = document.getElementById('product-title');
