@@ -1,4 +1,4 @@
-// Universal fetch function
+// -------- -------- -------- -------- Universal fetch function
 var fetchApi = async (url) => {
   // Execute a try and catch block to catch if there is no network
   try {
@@ -19,11 +19,11 @@ var fetchApi = async (url) => {
   }
 };
 
-// Weatherapi - required parameters and URL
+// -------- -------- -------- -------- Weatherapi - required parameters and URL
 var APIKEY = '6aa15f30207248b9b2b135920223003';
 var searchedCity = 'Toronto';
 var weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${searchedCity}&aqi=no`;
 
-// Fetch function is reusable
-// Simply include the API url with the required parameters
+// -------- -------- -------- -------- Executing the fetch
+// Fetch function is reusable - Required: Include the API url as the parameter
 fetchApi(weatherUrl);
